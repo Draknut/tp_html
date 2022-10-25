@@ -126,44 +126,83 @@
           </div>
         </div>
         <div class="carousel-item">
-        <div class="container page2">
-          <div class="row">
-              <h1>Quelques créations</h1>
-          </div>
-          <div class="row p-5">
-            <div class="col-6">
-              <div class="card" style="width: 30rem;">
-                <img src="Image/Card_KTERPill" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">K-T.E.R Pill's Arcade</h5>
-                  <p class="card-text">K-T.E.R Pill's Arcade est un jeu type "Shoot'em up" avec une note de "Endless Runner"  dans lequel vous incarnerez une chenille radioactive.
-                     A travers des égouts parsemés de créatures modifiées par les retombés, vous essayerez de vous frayer un chemin le plus loin que possible.</p>
-                  <a href="https://clement-romanet.itch.io/k-terpills-arcade" target="_blank" class="btn btn-secondary">Y-aller</a>
+          <div class="container page2">
+            <div class="row">
+                <h1>Quelques créations</h1>
+            </div>
+              <div class="row p-5">
+                <div class="col-6">
+                  <div class="card" style="width: 30rem;">
+                    <img src="Image/Card_KTERPill" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">K-T.E.R Pill's Arcade</h5>
+                      <p class="card-text">K-T.E.R Pill's Arcade est un jeu type "Shoot'em up" avec une note de "Endless Runner"  dans lequel vous incarnerez une chenille radioactive.
+                         A travers des égouts parsemés de créatures modifiées par les retombés, vous essayerez de vous frayer un chemin le plus loin que possible.</p>
+                      <a href="https://clement-romanet.itch.io/k-terpills-arcade" target="_blank" class="btn btn-secondary">Y-aller</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="card" style="width: 30rem;">
+                   <img src="Image/FinalyHome.jpg" class="card-img-top" alt="...">
+                   <div class="card-body">
+                     <h5 class="card-title">Finaly Home</h5>
+                      <p class="card-text">Incarnez un fantôme lors de son voyage à travers une forêt magique et utilisez son sort pour manipuler le mouvement de l'environnement.</p>
+                      <a href="https://clement-romanet.itch.io/finaly-home" target="_blank" class="btn btn-secondary">Y-aller</a>
+                   </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-6">
-            <div class="card" style="width: 30rem;">
-              <img src="Image/FinalyHome.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Finaly Home</h5>
-                <p class="card-text">Incarnez un fantôme lors de son voyage à travers une forêt magique et utilisez son sort pour manipuler le mouvement de l'environnement.</p>
-                <a href="https://clement-romanet.itch.io/finaly-home" target="_blank" class="btn btn-secondary">Y-aller</a>
-              </div>
-            </div>
-          </div>
           </div>
         </div>
-      </div>
-      </div>
+        <div class="carousel-item">
+          <div class="col">
+            <form method="post">
+                <br>
+                <input type='text' name='pseudo' placeholder="Pseudo">
+                <br><br>
+                <input type='email' name='mail' placeholder="Mail">
+                <br><br>
+                <input type="phone" name='phone' placeholder="N° Tel">
+                <br><br>
+                <input type="password" name='mdp' placeholder="Password">
+                <br><br>
+                <input type="submit" value='Poster'>
+            </form>
+            <?php
+              if ($_POST) {
+                if(strlen($_POST['pseudo'])<= 3 ){
+                    echo 'Pseudo trop court';
+                }
+                elseif(strlen($_POST['phone'])< 10 || strlen($_POST['phone'])>10 ){
+                    echo 'Numero de telephone invalide';
+                }elseif(strlen($_POST['mdp'])<= 8 ){
+                    echo 'Mot de passe trop court';
+                }else{
+
+                    echo $_POST['pseudo'];
+                    echo '<br>';
+                    echo $_POST['mail'];
+                    echo '<br>';
+                    echo $_POST['phone'];
+                    echo '<br>';
+                    $pdo = new PDO('mysql:host=localhost;dbname=donnee_profil', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+                    $pdo->exec("INSERT INTO contact (pseudo, email, phone, mdp) VALUES ('$_POST[pseudo]', '$_POST[mail]', '$_POST[phone]', 'md5($_POST[mdp])')");
+                }
+            }
+            ?>
+          </div>
+        </div>
+      
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-         <span class="visually-hidden">Previous</span>
+          <span class="visually-hidden">Previous</span>
         </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>

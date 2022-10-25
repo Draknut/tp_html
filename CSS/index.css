@@ -28,3 +28,7 @@
     text-align: center;
     color: rgb(136, 173, 207);
 }
+.page3{
+    display: flex;
+    justify-content: center;
+}

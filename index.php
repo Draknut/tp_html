@@ -9,7 +9,7 @@
   </head>
   <body class="bg-dark">
     <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container position-sticky start-100 end-100">
+      <div class="container text-center">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,11 +30,6 @@
             </li>
           </ul>
         </div>
-      </div>
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
     </nav>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">  
@@ -155,46 +150,44 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="carousel-item">
-          <div class="col">
-            <form method="post">
-                <br>
-                <input type='text' name='pseudo' placeholder="Pseudo">
-                <br><br>
-                <input type='email' name='mail' placeholder="Mail">
-                <br><br>
-                <input type="phone" name='phone' placeholder="N° Tel">
-                <br><br>
-                <input type="password" name='mdp' placeholder="Password">
-                <br><br>
-                <input type="submit" value='Poster'>
-            </form>
-            <?php
-              if ($_POST) {
-                if(strlen($_POST['pseudo'])<= 3 ){
-                    echo 'Pseudo trop court';
-                }
-                elseif(strlen($_POST['phone'])< 10 || strlen($_POST['phone'])>10 ){
-                    echo 'Numero de telephone invalide';
-                }elseif(strlen($_POST['mdp'])<= 8 ){
-                    echo 'Mot de passe trop court';
-                }else{
-
-                    echo $_POST['pseudo'];
-                    echo '<br>';
-                    echo $_POST['mail'];
-                    echo '<br>';
-                    echo $_POST['phone'];
-                    echo '<br>';
-                    $pdo = new PDO('mysql:host=localhost;dbname=donnee_profil', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-                    $pdo->exec("INSERT INTO contact (pseudo, email, phone, mdp) VALUES ('$_POST[pseudo]', '$_POST[mail]', '$_POST[phone]', 'md5($_POST[mdp])')");
-                }
-            }
-            ?>
+          <div class="carousel-item">
+            <div class="container text-center">
+              <div>
+                <form method="post">
+                  <br>
+                  <h1 class="text-white">Me contacter</h1>
+                  <br><br>
+                  <input class="bg-secondary border border-2 rounded-4" type='text' name='pseudo' placeholder="Pseudo ">
+                  <br><br>
+                  <input class="bg-secondary border border-2 rounded-4" type='email' name='mail' placeholder="Mail">
+                  <br><br>
+                  <input class="bg-secondary border border-2 rounded-4" type="phone" name='phone' placeholder="N° Tel">
+                  <br><br>
+                  <input class="bg-secondary border border-2 rounded-4" type="password" name='mdp' placeholder="Password">
+                  <br><br>
+                  <input class="bg-secondary border border-2 rounded-4" type="submit" value='Poster'>
+                  <br><br>
+                  <button class="bg-secondary border border-2 rounded-4" onclick="myFunction()">Page Admin</button>
+                </form>
+              </div>
+              <?php
+                if ($_POST) {
+                  if(strlen($_POST['pseudo'])<= 3 ){
+                      echo 'Pseudo trop court';
+                  }
+                  elseif(strlen($_POST['phone'])!= 10){
+                      echo 'Numero de telephone invalide';
+                  }elseif(strlen($_POST['mdp'])< 8 ){
+                      echo 'Mot de passe trop court';
+                  }else{
+                      $pdo = new PDO('mysql:host=localhost;dbname=donnee_profil', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+                      $pdo ->exec("INSERT INTO contact (pseudo, email, phone, mdp) VALUES ('$_POST[pseudo]', '$_POST[mail]', '$_POST[phone]', '$_POST[mdp]')");
+                  }
+              }
+              ?>
+            </div>
           </div>
         </div>
-      
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
@@ -204,6 +197,18 @@
           <span class="visually-hidden">Next</span>
         </button>
     </div>
+    <script>
+       function myFunction() {
+       let text;
+       let pseudo = prompt("Please enter your name:");
+       if (pseudo == "root") {
+          let password = prompt("Password");
+          if(password == "root"){
+            window.open("admin.php", "_blank");
+          }
+       }
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
 </html> 

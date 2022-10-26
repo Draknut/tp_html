@@ -8,13 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
   <body class="bg-dark">
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container text-center">
+    <nav class="navbar navbar-expand-lg bg-light"  style="padding-top: 50px">
+      <div class="container">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Bouton Navbar --> 
-        <div class="collapse navbar-collapse"  id="navbarNav">
+        <div class="collapse navbar-collapse position-absolute top-0 start-50 translate-middle" style="padding-top: 60px"  id="navbarNav">
           <ul class="navbar-nav">
             <li id="CV">
               <p class="fs-2 p-2"><span class="badge bg-secondary">Info</span></p>
